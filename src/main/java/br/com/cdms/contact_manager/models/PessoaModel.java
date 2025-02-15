@@ -28,10 +28,11 @@ public class PessoaModel {
     public PessoaModel() {
     }
 
-    public PessoaModel(String nome, String endereco, String cep, UF uf) {
+    public PessoaModel(String nome, String endereco, String cep, String cidade, UF uf) {
         this.nome = nome;
         this.endereco = endereco;
         this.cep = cep;
+        this.cidade = cidade;
         this.uf = uf;
     }
 

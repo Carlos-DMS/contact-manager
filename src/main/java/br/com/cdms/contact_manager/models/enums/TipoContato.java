@@ -17,7 +17,7 @@ public enum TipoContato {
         this.contatoRelatorio = contatoRelatorio;
     }
 
-    public String getNomeRelatorio() {
+    public String getContatoRelatorio() {
         return contatoRelatorio;
     }
 }
