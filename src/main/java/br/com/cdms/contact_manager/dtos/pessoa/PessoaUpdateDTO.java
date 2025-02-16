@@ -1,4 +1,4 @@
-package br.com.cdms.contact_manager.dtos;
+package br.com.cdms.contact_manager.dtos.pessoa;
 
 import br.com.cdms.contact_manager.models.enums.UF;
 import jakarta.validation.constraints.Pattern;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 public record PessoaUpdateDTO(
         @Size(min = 2, max = 100, message = "O campo nome deve ter entre 2 e 100 letras.")
         String nome,
-        @Size(min = 2, max = 150, message = "O campo endereço deve ter entre 3 e 150 letras.")
+        @Size(min = 3, max = 150, message = "O campo endereço deve ter entre 3 e 150 letras.")
         String endereco,
         //Regex: 12345678
         @Pattern(regexp = "^\\d{8}$", message = "O campo CEP deve conter 8 dígitos")
@@ -15,7 +15,7 @@ public record PessoaUpdateDTO(
         @Size(min = 3, max = 100, message = "O campo cidade deve ter entre 3 e 100 letras.")
         String cidade,
         //Regex: AZ
-        @Pattern(regexp = "^[A-Z]{2}$", message = "O campo UF deve conter 2 letras maiúsculas")
+        //TODO: @ValidUF
         UF uf
 ) {
 }
