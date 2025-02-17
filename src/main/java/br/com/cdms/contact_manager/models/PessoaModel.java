@@ -28,12 +28,12 @@ public class PessoaModel {
     public PessoaModel() {
     }
 
-    public PessoaModel(String nome, String endereco, String cep, String cidade, UF uf) {
+    public PessoaModel(String nome, String endereco, String cep, String cidade, String uf) {
         this.nome = nome;
         this.endereco = endereco;
         this.cep = cep;
         this.cidade = cidade;
-        this.uf = uf;
+        this.uf = uf != null ? UF.valueOf(uf.toUpperCase()) : null;
     }
 
     public Long getId() {
@@ -76,8 +76,8 @@ public class PessoaModel {
         return uf;
     }
 
-    public void setUf(UF uf) {
-        this.uf = uf;
+    public void setUf(String uf) {
+        this.uf = uf != null ? UF.valueOf(uf.toUpperCase()) : null;
     }
 
     public Set<ContatoModel> getContatos() {

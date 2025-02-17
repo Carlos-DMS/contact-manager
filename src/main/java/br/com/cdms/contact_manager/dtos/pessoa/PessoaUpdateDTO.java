@@ -1,7 +1,7 @@
 package br.com.cdms.contact_manager.dtos.pessoa;
 
-import br.com.cdms.contact_manager.models.enums.UF;
 import br.com.cdms.contact_manager.validation.constraints.NullableNotBlank;
+import br.com.cdms.contact_manager.validation.constraints.ValidUF;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -19,6 +19,7 @@ public record PessoaUpdateDTO(
         @NullableNotBlank(message = "O campo cidade não deve ser vazio")
         @Size(min = 3, max = 100, message = "O campo cidade deve ter entre 3 e 100 letras.")
         String cidade,
-        UF uf
+        @ValidUF
+        String uf
 ) {
 }

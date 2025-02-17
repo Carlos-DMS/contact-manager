@@ -22,8 +22,9 @@ public class ContatoModel {
     public ContatoModel() {
     }
 
-    public ContatoModel(TipoContato tipoContato, String contato, PessoaModel pessoa) {
-        this.tipoContato = tipoContato;
+    public ContatoModel(String tipoContato, String contato, PessoaModel pessoa) {
+
+        this.tipoContato = tipoContato != null ? TipoContato.valueOf(tipoContato.toUpperCase()) : null;
         this.contato = contato;
         this.pessoa = pessoa;
     }
@@ -36,8 +37,8 @@ public class ContatoModel {
         return tipoContato;
     }
 
-    public void setTipoContato(TipoContato tipoContato) {
-        this.tipoContato = tipoContato;
+    public void setTipoContato(String tipoContato) {
+        this.tipoContato = tipoContato != null ? TipoContato.valueOf(tipoContato.toUpperCase()) : null;
     }
 
     public String getContato() {
