@@ -11,13 +11,13 @@ public enum TipoContato {
     LINKEDIN("LinkedIn"),
     GITHUB("GitHub");
 
-    private final String contatoRelatorio;
+    private final String tipoContatoRelatorio;
 
-    TipoContato(String contatoRelatorio) {
-        this.contatoRelatorio = contatoRelatorio;
+    TipoContato(String tipoContatoRelatorio) {
+        this.tipoContatoRelatorio = tipoContatoRelatorio;
     }
 
-    public String getContatoRelatorio() {
-        return contatoRelatorio;
+    public String getTipoContatoRelatorio() {
+        return tipoContatoRelatorio;
     }
 }

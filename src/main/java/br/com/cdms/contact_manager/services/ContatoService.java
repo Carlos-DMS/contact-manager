@@ -49,7 +49,7 @@ public class ContatoService {
 
         return new ContatoResponseDTO(
                 contato.getId(),
-                contato.getTipoContato().getContatoRelatorio(),
+                contato.getTipoContato().getTipoContatoRelatorio(),
                 contato.getContato(),
                 pessoaService.buscarPessoaPorID(contato.getPessoa().getId())
         );
@@ -60,7 +60,7 @@ public class ContatoService {
 
          return pessoa.getContatos().stream().map(contato -> new ContatoResponseDTO(
                 contato.getId(),
-                contato.getTipoContato().getContatoRelatorio(),
+                contato.getTipoContato().getTipoContatoRelatorio(),
                 contato.getContato(),
                 pessoaService.buscarPessoaPorID(pessoa.getId())
          )).toList();
