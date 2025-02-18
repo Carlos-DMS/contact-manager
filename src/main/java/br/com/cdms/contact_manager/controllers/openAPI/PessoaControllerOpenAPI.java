@@ -1,5 +1,6 @@
 package br.com.cdms.contact_manager.controllers.openAPI;
 
+import br.com.cdms.contact_manager.dtos.ExemploCampoInvalidoDTO;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaMalaDiretaResponseDTO;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaRequestDTO;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaResponseDTO;
@@ -26,7 +27,7 @@ public interface PessoaControllerOpenAPI {
             @ApiResponse(
                     responseCode = "400",
                     description = "Um ou mais parâmetros inseridos são inválidos.",
-                    content = @Content(schema = @Schema(type = "string", example = "Erros"))
+                    content = @Content(schema = @Schema(implementation = ExemploCampoInvalidoDTO.class, type = "array"))
             )
     })
     @Operation(
@@ -80,7 +81,7 @@ public interface PessoaControllerOpenAPI {
             @ApiResponse(
                     responseCode = "400",
                     description = "Um ou mais parâmetros inseridos são inválidos.",
-                    content = @Content(schema = @Schema(type = "string", example = "Erros"))
+                    content = @Content(schema = @Schema(implementation = ExemploCampoInvalidoDTO.class, type = "array"))
             )
     })
     @Operation(

@@ -1,5 +1,6 @@
 package br.com.cdms.contact_manager.controllers.openAPI;
 
+import br.com.cdms.contact_manager.dtos.ExemploCampoInvalidoDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoRequestDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoResponseDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoUpdateDTO;
@@ -25,7 +26,7 @@ public interface ContatoControllerOpenAPI {
             @ApiResponse(
                     responseCode = "400",
                     description = "Um ou mais parâmetros inseridos são inválidos.",
-                    content = @Content(schema = @Schema(type = "string", example = "Erros"))
+                    content = @Content(schema = @Schema(implementation = ExemploCampoInvalidoDTO.class, type = "array"))
             )
     })
     @Operation(
@@ -65,7 +66,11 @@ public interface ContatoControllerOpenAPI {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Contato cadastrado com sucesso."),
             @ApiResponse(responseCode = "409", description = "O contato já estava cadastrado."),
-            @ApiResponse(responseCode = "400", description = "Um ou mais parâmetros inseridos são inválidos.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Um ou mais parâmetros inseridos são inválidos.",
+                    content = @Content(schema = @Schema(implementation = ExemploCampoInvalidoDTO.class, type = "array"))
+            )
     })
     @Operation(
             summary = "Atualizar contato.",
