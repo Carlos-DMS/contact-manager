@@ -30,7 +30,7 @@ public class PessoaService {
         return new PessoaResponseDTO(
                 pessoa.getId(),
                 pessoa.getNome(),
-                pessoa.getCep(),
+                pessoa.getEndereco(),
                 pessoa.getCep(),
                 pessoa.getCidade(),
                 pessoa.getUf()
