@@ -1,5 +1,6 @@
 package br.com.cdms.contact_manager.controllers;
 
+import br.com.cdms.contact_manager.controllers.openAPI.PessoaControllerOpenAPI;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaMalaDiretaResponseDTO;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaRequestDTO;
 import br.com.cdms.contact_manager.dtos.pessoa.PessoaResponseDTO;
@@ -15,12 +16,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pessoas")
-public class PessoaController {
+public class PessoaController implements PessoaControllerOpenAPI {
     @Autowired
     PessoaService pessoaService;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarPessoa(@Valid @RequestBody PessoaRequestDTO body) {
+    public ResponseEntity<Void> cadastrarPessoa(@Valid @RequestBody PessoaRequestDTO body) {
         pessoaService.cadastrarPessoa(body);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -42,14 +43,14 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarPessoaPorID(@PathVariable Long id, @Valid @RequestBody PessoaUpdateDTO body) {
+    public ResponseEntity<Void> atualizarPessoaPorID(@PathVariable Long id, @Valid @RequestBody PessoaUpdateDTO body) {
         pessoaService.atualizarPessoaPorId(id, body);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletarPessoaPorId(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarPessoaPorId(@PathVariable Long id) {
         pessoaService.deletarPessoaPorId(id);
 
         return ResponseEntity.status(HttpStatus.OK).build();
