@@ -1,6 +1,7 @@
 package br.com.cdms.contact_manager.controllers;
 
 import br.com.cdms.contact_manager.controllers.openAPI.ContatoControllerOpenAPI;
+import br.com.cdms.contact_manager.dtos.contato.ContatoPessoaEspecificaDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoRequestDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoResponseDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoUpdateDTO;
@@ -32,7 +33,7 @@ public class ContatoController implements ContatoControllerOpenAPI {
     }
 
     @GetMapping("/pessoa/{idPessoa}")
-    public ResponseEntity<List<ContatoResponseDTO>> buscarContatosPorIdPessoa(@PathVariable Long idPessoa) {
+    public ResponseEntity<List<ContatoPessoaEspecificaDTO>> buscarContatosPorIdPessoa(@PathVariable Long idPessoa) {
         return ResponseEntity.status(HttpStatus.OK).body(contatoService.buscarContatosPorIdPessoa(idPessoa));
     }
 

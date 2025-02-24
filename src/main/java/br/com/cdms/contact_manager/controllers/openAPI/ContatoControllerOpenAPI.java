@@ -1,6 +1,7 @@
 package br.com.cdms.contact_manager.controllers.openAPI;
 
 import br.com.cdms.contact_manager.dtos.ExemploCampoInvalidoDTO;
+import br.com.cdms.contact_manager.dtos.contato.ContatoPessoaEspecificaDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoRequestDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoResponseDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoUpdateDTO;
@@ -61,11 +62,10 @@ public interface ContatoControllerOpenAPI {
             summary = "Buscar contatos de pessoa por ID.",
             description = "Busca contatos vinculados ao ID de uma pessoa específica"
     )
-    ResponseEntity<List<ContatoResponseDTO>> buscarContatosPorIdPessoa(@Parameter(description = "ID da pessoa", example = "1") @PathVariable Long idPessoa);
+    ResponseEntity<List<ContatoPessoaEspecificaDTO>> buscarContatosPorIdPessoa(@Parameter(description = "ID da pessoa", example = "1") @PathVariable Long idPessoa);
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Contato cadastrado com sucesso."),
-            @ApiResponse(responseCode = "409", description = "O contato já estava cadastrado."),
+            @ApiResponse(responseCode = "200", description = "Contato editado com sucesso."),
             @ApiResponse(
                     responseCode = "400",
                     description = "Um ou mais parâmetros inseridos são inválidos.",
@@ -79,12 +79,11 @@ public interface ContatoControllerOpenAPI {
     ResponseEntity<Void> atualizarContatoPorId(@Parameter(description = "ID do contato", example = "1") @PathVariable Long id, @Valid @RequestBody ContatoUpdateDTO body);
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Contato cadastrado com sucesso."),
-            @ApiResponse(responseCode = "409", description = "O contato já estava cadastrado."),
+            @ApiResponse(responseCode = "200", description = "Contato deletado com sucesso."),
             @ApiResponse(
-                    responseCode = "400",
-                    description = "Um ou mais parâmetros inseridos são inválidos.",
-                    content = @Content(schema = @Schema(type = "string", example = "Erros"))
+                    responseCode = "404",
+                    description = "O contato referente ao ID inserido não existe.",
+                    content = @Content(schema = @Schema(type = "string", example = "Não foi possível encontrar esse contato no banco de dados."))
             )
     })
     @Operation(

@@ -1,5 +1,6 @@
 package br.com.cdms.contact_manager.services;
 
+import br.com.cdms.contact_manager.dtos.contato.ContatoPessoaEspecificaDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoRequestDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoResponseDTO;
 import br.com.cdms.contact_manager.dtos.contato.ContatoUpdateDTO;
@@ -55,14 +56,13 @@ public class ContatoService {
         );
     }
 
-    public List<ContatoResponseDTO> buscarContatosPorIdPessoa(Long idPessoa) {
+    public List<ContatoPessoaEspecificaDTO> buscarContatosPorIdPessoa(Long idPessoa) {
         PessoaModel pessoa = pessoaService.buscarPessoaNoBancoPorID(idPessoa);
 
-         return pessoa.getContatos().stream().map(contato -> new ContatoResponseDTO(
+         return pessoa.getContatos().stream().map(contato -> new ContatoPessoaEspecificaDTO(
                 contato.getId(),
                 contato.getTipoContato().getTipoContatoRelatorio(),
-                contato.getContato(),
-                pessoaService.buscarPessoaPorID(pessoa.getId())
+                contato.getContato()
          )).toList();
     }
 
