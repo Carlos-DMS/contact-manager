@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,11 +60,14 @@ public class ContatoService {
     public List<ContatoPessoaEspecificaDTO> buscarContatosPorIdPessoa(Long idPessoa) {
         PessoaModel pessoa = pessoaService.buscarPessoaNoBancoPorID(idPessoa);
 
-         return pessoa.getContatos().stream().map(contato -> new ContatoPessoaEspecificaDTO(
-                contato.getId(),
-                contato.getTipoContato().getTipoContatoRelatorio(),
-                contato.getContato()
-         )).toList();
+         return pessoa.getContatos()
+                 .stream()
+                 .sorted(Comparator.comparing(ContatoModel::getId))
+                 .map(contato -> new ContatoPessoaEspecificaDTO(
+                         contato.getId(),
+                         contato.getTipoContato().getTipoContatoRelatorio(),
+                         contato.getContato()
+                 )).toList();
     }
 
     @Transactional
