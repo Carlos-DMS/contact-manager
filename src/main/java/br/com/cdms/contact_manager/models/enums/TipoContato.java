@@ -1,8 +1,8 @@
 package br.com.cdms.contact_manager.models.enums;
 
 public enum TipoContato {
-    EMAIL("email"),
-    CELULAR("celular"),
+    EMAIL("Email"),
+    CELULAR("Celular"),
     WHATSAPP("Whatsapp"),
     TELEGRAM("Telegram"),
     SKYPE("Skype"),
